@@ -15,28 +15,57 @@ namespace Chapter.State
         
         void Update() 
         {
-            if (Input.GetKey("w"))
+            /*if (Input.GetKey("w"))
             {
                 Debug.Log("Go");
                 _playerController.StartPlayer();
+            }*/
+            if (Input.GetKeyDown(KeyCode.LeftShift) && _playerController._isGrounded)
+            {
+                Debug.Log("Duck");
+                _playerController.Duck();
             }
-            
-            if (Input.GetKey("a"))
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                Debug.Log("stand");
+                _playerController.Stand();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && _playerController._isGrounded)
+            {
+                Debug.Log("Jump");
+                _playerController.Jump();
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !_playerController._isGrounded)
+            {
+                Debug.Log("Dive");
+                _playerController.Dive();
+            }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                Debug.Log("forward");
+                _playerController.Forward();
+            }
+
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 Debug.Log("left");
-                _playerController.Turn(Direction.Left);
+                _playerController.Left();
             }
             
-            if (Input.GetKey("d"))
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 Debug.Log("right");
-                _playerController.Turn(Direction.Right);
+                _playerController.Right();
             }
             
-            if (Input.GetKey("s"))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 Debug.Log("stop");
-                _playerController.StopPlayer();
+                _playerController.Backward();
             }
         }
     }
